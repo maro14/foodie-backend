@@ -1,0 +1,16 @@
+{
+  "name": "express-food",
+  "version": "1.0.0",
+  "description": "backend for delivery food app",
+  "main": "server.js",
+  "license": "MIT",
+  "private": true,
+  "dependencies": {
+    "express": "^4.18.1",
+    "mongoose": "^6.4.0"
+  },
+  "devDependencies": {
+    "dotenv": "^16.0.1",
+    "nodemon": "^2.0.16"
+  }
+}
