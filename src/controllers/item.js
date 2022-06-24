@@ -1,15 +1,16 @@
 const Item = require('../models/item');
 
-const getTestItems = (req, res, next) => {
-    res.status = 200
-    res.json({'From test item': 'OK'})
-    next()
-}
 
 const getItems = (req, res) => {
     const items = Item.find()
-    res.status(200)
-        .json({'your food': items})
+
+    try {
+        res.status(200)
+        .json({'All items': items})
+    } catch (err) {
+        res.status(404)
+        .json({'error': err})
+    }
 }
 
 const addItem = (req, res) => {
@@ -19,14 +20,26 @@ const addItem = (req, res) => {
         const item = Item.create(name)
         res.status(201)
         .json({'New': item})
-    } catch (error) {
+    } catch (err) {
         res.status(404)
-        .json({'Nothing found': error})
+        .json({'Nothing found': err})
+    }
+}
+
+const getItem = (req, res) => {
+    const item = Item.findById()
+    
+    try {
+        res.status(200)
+        .json({'name': item})
+    } catch (err) {
+        res.status(404)
+        .json({'error': err})
     }
 }
 
 module.exports = {
-    getTestItems,
     getItems,
-    addItem
+    addItem,
+    getItem
 }

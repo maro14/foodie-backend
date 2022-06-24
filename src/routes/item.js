@@ -1,14 +1,14 @@
 const express = require('express')
 const {
-    getTestItems,
     getItems,
-    addItem
+    addItem,
+    getItem
 } = require('../controllers/item');
 
 const router = express.Router()
 
-router.get('/test', getTestItems)
 router.get('/items', getItems)
+router.get('/item/:id`', getItem)
 router.post('/item', addItem)
 
 module.exports = router
