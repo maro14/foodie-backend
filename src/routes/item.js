@@ -1,8 +1,10 @@
 const express = require('express')
 const {
-    getTestItem
+    getTestItems
 } = require('../controllers/item');
 
 const router = express.Router()
 
-router.get('/item', getTestItem)
+router.get('/test', getTestItems)
+
+module.exports = router
