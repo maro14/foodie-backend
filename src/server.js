@@ -16,6 +16,6 @@ app.listen(PORT, () => {
     try {
         console.log(`Server on ${PORT}`);
     } catch (err) {
-        console.log(err);
+        console.log(`Server ${err}`);
     }
 })
