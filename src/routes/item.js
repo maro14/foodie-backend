@@ -1,4 +1,8 @@
 const express = require('express')
+const {
+    getTestItem
+} = require('../controllers/item');
 
-router = express.Router()
+const router = express.Router()
 
+router.get('/item', getTestItem)
