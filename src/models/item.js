@@ -1,12 +1,15 @@
 const mongoose = require('mongoose')
 
 const itemSchema = mongoose.Schema({
-    _id : mongoose.SchemaTypes.ObjectId,
-    name: mongoose.SchemaTypes.String
+    _id : {
+        type: String,
+        require: true },
+    name: {
+        type: String,
+        require: true
+    }
 })
 
 const Item = mongoose.model('Item', itemSchema)
 
-export default {
-    Item
-}
+module.exports = Item

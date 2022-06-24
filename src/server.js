@@ -6,7 +6,7 @@ const helmet = require('helmet')
 const itemsRouter = require('./routes/item');
 const app = express()
 
-app.use('/item',itemsRouter)
+
 app.use(express.json())
 app.use(morgan("dev"))
 app.use(cors())
@@ -15,6 +15,9 @@ app.use(helmet())
 app.get('/', (req, res) => {
     res.json({'Status': 'OK'})
 })
+
+//routes
+app.use('/item',itemsRouter)
 
 const PORT = 5000
 
