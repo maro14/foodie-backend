@@ -38,8 +38,36 @@ const getItem = (req, res) => {
     }
 }
 
+const updateItem = (req, res) => {
+    const { name } = req.body
+
+    try {
+        const item = Item.findOneAndUpdate(name)
+        res.status(200)
+        .json({'update': item})
+    } catch (err) {
+        res.status(404)
+        .json({'error': err})
+    }
+}
+
+const deleteItem = (req, res) => {
+    const { name } = req.body
+
+    try {
+        const item = Item.findOneAndDelete(name)
+        res.status(200)
+        .json({'delete': item})
+    } catch (err) {
+        res.status(404)
+        .json({'error':err})
+    }
+}
+
 module.exports = {
     getItems,
     addItem,
-    getItem
+    getItem,
+    updateItem,
+    deleteItem
 }
