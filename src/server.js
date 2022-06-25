@@ -3,7 +3,8 @@ const morgan = require('morgan')
 const cors = require('cors')
 const helmet = require('helmet')
 
-const itemsRouter = require('./routes/item');
+const itemsRouter = require('./routes/item')
+const dbConnect = require('./database/connection')
 const app = express()
 
 
@@ -20,6 +21,8 @@ app.get('/', (req, res) => {
 app.use('/item',itemsRouter)
 
 const PORT = 5000
+
+dbConnect()
 
 app.listen(PORT, () => {
     try {
