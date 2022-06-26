@@ -20,7 +20,7 @@ app.get('/', (req, res) => {
 //routes
 app.use('/item',itemsRouter)
 
-const PORT = 5000
+const PORT = process.env.PORT || 5000
 
 dbConnect()
 

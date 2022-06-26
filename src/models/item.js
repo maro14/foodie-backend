@@ -1,14 +1,11 @@
-const mongoose = require('mongoose')
+const { Schema , model } = require('mongoose')
 
-const itemSchema = mongoose.Schema({
 
+const itemSchema = new Schema({
     name: {
         type: String,
         require: true
     }
-    
 })
 
-const Item = mongoose.model('Item', itemSchema)
-
-module.exports = Item
+module.exports = Item = model('item', itemSchema)
