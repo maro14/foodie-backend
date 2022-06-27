@@ -1,8 +1,8 @@
 const Item = require('../models/item');
 
 
-const getItems = (req, res) => {
-    const items = Item.find()
+const getItems = async(req, res) => {
+    const items = await Item.find()
 
     try {
         res.status(200)
@@ -13,11 +13,11 @@ const getItems = (req, res) => {
     }
 }
 
-const addItem = (req, res) => {
+const addItem = async(req, res) => {
     const { name } = req.body
     
     try {
-        const item = Item.create(name)
+        const item = await Item.create(name)
         res.status(201)
         .json({'New': item})
     } catch (err) {
@@ -26,8 +26,8 @@ const addItem = (req, res) => {
     }
 }
 
-const getItem = (req, res) => {
-    const item = Item.findById()
+const getItem = async(req, res) => {
+    const item = await Item.findById()
     
     try {
         res.status(200)
@@ -38,11 +38,11 @@ const getItem = (req, res) => {
     }
 }
 
-const updateItem = (req, res) => {
+const updateItem = async(req, res) => {
     const { name } = req.body
 
     try {
-        const item = Item.findOneAndUpdate(name)
+        const item = await Item.findOneAndUpdate(name)
         res.status(200)
         .json({'update': item})
     } catch (err) {
@@ -55,7 +55,7 @@ const deleteItem = (req, res) => {
     const { name } = req.body
 
     try {
-        const item = Item.findOneAndDelete(name)
+        const item = await Item.findOneAndDelete(name)
         res.status(200)
         .json({'delete': item})
     } catch (err) {
