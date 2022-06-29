@@ -1,6 +1,6 @@
 {
   "name": "express-food",
-  "version": "1.0.0",
+  "version": "1.0.2",
   "description": "backend for delivery food app",
   "main": "server.js",
   "license": "MIT",

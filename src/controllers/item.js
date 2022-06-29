@@ -6,10 +6,10 @@ const getItems = async(req, res) => {
 
     try {
         res.status(200)
-        .json({'All items': items})
+        .json({ data : items })
     } catch (err) {
-        res.status(404)
-        .json({'error': err})
+        res.status(500)
+        .json({ message : err.message })
     }
 }
 
@@ -19,10 +19,10 @@ const addItem = async(req, res) => {
     try {
         const item = await Item.create(name)
         res.status(201)
-        .json({'New': item})
+        .json({ data : item })
     } catch (err) {
-        res.status(404)
-        .json({'Nothing found': err})
+        res.status(500)
+        .json({ message : err.massage })
     }
 }
 
@@ -31,10 +31,10 @@ const getItem = async(req, res) => {
     
     try {
         res.status(200)
-        .json({'name': item})
+        .json({ data : item })
     } catch (err) {
-        res.status(404)
-        .json({'error': err})
+        res.status(500)
+        .json({ message : err.massage })
     }
 }
 
@@ -44,10 +44,10 @@ const updateItem = async(req, res) => {
     try {
         const item = await Item.findOneAndUpdate(name)
         res.status(200)
-        .json({'update': item})
+        .json({ data : item })
     } catch (err) {
         res.status(404)
-        .json({'error': err})
+        .json({ message : err.message })
     }
 }
 
@@ -57,10 +57,10 @@ const deleteItem = (req, res) => {
     try {
         const item = await Item.findOneAndDelete(name)
         res.status(200)
-        .json({'delete': item})
+        .json({ data : item })
     } catch (err) {
         res.status(404)
-        .json({'error':err})
+        .json({ message : err.massage })
     }
 }
 
