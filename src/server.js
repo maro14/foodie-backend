@@ -22,6 +22,7 @@ app.use('/item',itemsRouter)
 
 const PORT = process.env.PORT || 5000
 
+//database connection
 dbConnect()
 
 app.listen(PORT, () => {
