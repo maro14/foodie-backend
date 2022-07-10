@@ -17,7 +17,7 @@ const addItem = async(req, res) => {
     
     try {
         const { name } = req.body
-        const item = await Item.create(name)
+        const item = await Item.create({name})
         res.status(201)
         .json({ data : item })
     } catch (err) {
