@@ -29,7 +29,8 @@ const addItem = async(req, res) => {
 const getItem = async(req, res) => {
     
     try {
-        const item = await Item.findById()
+        const id = req.params._id
+        const item = await Item.findById({ id })
         res.status(200)
         .json({ data : item })
     } catch (err) {

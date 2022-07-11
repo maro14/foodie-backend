@@ -5,9 +5,9 @@ const dbConnect = () => {
         useNewUrlParser: true,
         useUnifiedTopology: true,
     }).then((conn) => {
-        console.log('Database connect', conn);
+        console.log('Database connect... ', conn);
     }).catch((err) => {
-        console.error('Database error', err);
+        console.error('Database error..! ', err);
     });
 }
 

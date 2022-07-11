@@ -5,7 +5,8 @@ const itemSchema = new Schema({
     name: {
         type: String,
         require: true
-    }
+    },
+    timestamps: true 
 })
 
 module.exports = Item = model('item', itemSchema)
