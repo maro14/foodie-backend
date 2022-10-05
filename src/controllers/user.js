@@ -7,12 +7,32 @@ const signIn = async(req, res) => {
     try {
         const { username, email, password } = req.body
 
-        user = User.findOne({ email })
-        if (user) {
+        emailUser = await User.findOne({ email })
+        if (emailUser) {
             res.status(404).json({
-                message: 'User already exists '
+                message: 'User already exists'
             })
         }
+        encryptedPassword = bcrypt.hash(password, 10)
+
+        const addUser = await User.create({
+            username,
+            email,
+            password: encryptedPassword
+        })
+
+        const token = jwt.sign({
+            user_id: user_id, email
+        }, process.env.TOKEN_ID, 
+        {
+            expiresIn: "2h",
+        })
+
+        addUser.token = token
+
+        res.status(201).json({
+            data: token
+        })
 
     } catch (err) {
         res.status(500).json({
@@ -22,3 +42,5 @@ const signIn = async(req, res) => {
     }
     
 }
+
+module.exports = signIn
