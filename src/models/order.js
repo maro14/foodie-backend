@@ -1,7 +1,14 @@
 const { Schema, model } = require('mongoose');
 
 const orderSchema = new Schema({
-    name: String
+    user: {
+        type: Schema.Types.ObjectId,
+        ref: 'user'
+    },
+    item: {
+        type: Schema.Types.ObjectId,
+        ref: 'item'
+    }
 })
 
 const Order = model('order', orderSchema)
