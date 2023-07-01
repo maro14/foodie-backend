@@ -8,9 +8,24 @@ const getOrders = async(req, res) => {
         })
     } catch (err) {
         res.status(400).json({
-            data: err
+            data: err.message
         })
     }
 }
 
-module.exports = getOrders
+const createOrder = async(req, res) => {
+    try {
+        const { user, item } = req.body
+        const order = await Order.create({ user, item })
+        res.status(201).json({ 
+            data: order
+        })
+    } catch (error) {
+        res.status(400).json({
+            data: err.message
+        })
+    }
+}
+
+module.exports = { getOrders, 
+                createOrder }

@@ -5,6 +5,8 @@ const helmet = require('helmet')
 const dotenv = require('dotenv')
 dotenv.config()
 const itemsRouter = require('./routes/item')
+const orderRouter = require('./routes/order')
+const userRouter = require('./routes/user');
 const dbConnect = require('./database/connection')
 const app = express()
 
@@ -20,6 +22,8 @@ app.get('/', (req, res) => {
 
 //routes
 app.use('/item',itemsRouter)
+app.use('/order', orderRouter)
+app.use('/sign', userRouter)
 
 const PORT = process.env.PORT || 5000
 
