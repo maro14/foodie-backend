@@ -9,9 +9,8 @@ const signIn = async(req, res) => {
 
         emailUser = await User.findOne({ email })
         if (emailUser) {
-            res.status(404).json({
-                message: 'User already exists'
-            })
+            res.status(404)
+                .json({ message: 'User already exists' })
         }
         encryptedPassword = bcrypt.hash(password, 10)
 
@@ -30,15 +29,12 @@ const signIn = async(req, res) => {
 
         addUser.token = token
 
-        res.status(201).json({
-            data: token
-        })
+        res.status(201)
+            .json({ data: token })
 
     } catch (err) {
-        res.status(500).json({
-            data: err,
-            message: 'Server error'
-        })
+        res.status(500)
+            .json({ data: err, message: 'Server error' })
     }
     
 }
