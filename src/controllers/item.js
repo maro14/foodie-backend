@@ -42,8 +42,8 @@ const getItem = async(req, res) => {
 const updateItem = async(req, res) => {
     
     try {
-        const { name } = req.body
-        const item = await Item.findOneAndUpdate(name)
+        const { id, name } = req.body
+        const item = await Item.findOneAndUpdate(id, { name }, { new: true})
         res.status(200)
         .json({ data : item })
     } catch (err) {
@@ -55,8 +55,8 @@ const updateItem = async(req, res) => {
 const deleteItem = async(req, res) => {
     
     try {
-        const { name } = req.body
-        const item = await Item.findOneAndDelete(name)
+        const { id } = req.body
+        const item = await Item.findOneAndDelete(id)
         res.status(200)
         .json({ data : item })
     } catch (err) {
