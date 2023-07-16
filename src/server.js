@@ -4,10 +4,12 @@ const cors = require('cors')
 const helmet = require('helmet')
 const dotenv = require('dotenv')
 dotenv.config()
+
 const itemsRouter = require('./routes/item')
 const orderRouter = require('./routes/order')
 const userRouter = require('./routes/user');
-const dbConnect = require('./database/connection')
+const { MongodbConnect } = require('./database/connection')
+
 const app = express()
 
 
@@ -21,14 +23,14 @@ app.get('/', (req, res) => {
 })
 
 //routes
-app.use('/item',itemsRouter)
-app.use('/order', orderRouter)
-app.use('/sign', userRouter)
+app.use('/items',itemsRouter)
+app.use('/orders', orderRouter)
+app.use('/users', userRouter)
 
 const PORT = process.env.PORT || 5000
 
 //database connection
-dbConnect()
+MongodbConnect()
 
 app.listen(PORT, () => {
     try {
