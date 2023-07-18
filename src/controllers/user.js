@@ -5,7 +5,7 @@ const bcrypt = require('bcryptjs');
 const signIn = async(req, res) => {
 
     try {
-        const { username, email, password } = req.body
+        const { username, email, password, role } = req.body
 
         emailUser = await User.findOne({ email })
         if (emailUser) {
@@ -17,7 +17,8 @@ const signIn = async(req, res) => {
         const addUser = await User.create({
             username,
             email,
-            password: encryptedPassword
+            password: encryptedPassword,
+            role
         })
 
         const token = jwt.sign({

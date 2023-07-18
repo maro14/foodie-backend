@@ -27,4 +27,13 @@ const authenticateUser = async(req, res, next) => {
     }
 }
 
-module.exports = authenticateUser
+const isAdmin = async(req, res) => {
+
+    const adminRole = req.user.role
+    if (adminRole ==! 'admin') {
+        res.status(401)
+            .json({ message: 'Forbidden you are not admin'})
+    }
+}
+
+module.exports = { authenticateUser, isAdmin }

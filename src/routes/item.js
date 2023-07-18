@@ -8,12 +8,19 @@ const {
 
 } = require('../controllers/item');
 
+const { 
+    authenticateUser, 
+    isAdmin 
+
+} = require('../authentication/auth');
+
 const router = express.Router()
 
 router.get('/', getItems)
 router.get('/:id`', getItem)
-router.post('/', addItem)
-router.put('/:id', updateItem)
-router.delete('/:id', deleteItem)
+
+router.post('/', authenticateUser, isAdmin, addItem)
+router.put('/:id', authenticateUser , isAdmin, updateItem)
+router.delete('/:id', authenticateUser, isAdmin, deleteItem)
 
 module.exports = router
