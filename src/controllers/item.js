@@ -16,8 +16,8 @@ const getItems = async(req, res) => {
 const addItem = async(req, res) => {
     
     try {
-        const { name } = req.body
-        const item = await Item.create({name})
+        const { name, price, description } = req.body
+        const item = await Item.create({ name, price, description })
         res.status(201)
             .json({ data: item })
     } catch (err) {
@@ -29,7 +29,7 @@ const addItem = async(req, res) => {
 const getItem = async(req, res) => {
     
     try {
-        const id = req.params._id
+        const id = req.params
         const item = await Item.findById({ id })
         res.status(200)
             .json({ data: item })
@@ -55,7 +55,7 @@ const updateItem = async(req, res) => {
 const deleteItem = async(req, res) => {
     
     try {
-        const { id } = req.body
+        const { id } = req.params
         const item = await Item.findOneAndDelete(id)
         res.status(200)
             .json({ data: item })

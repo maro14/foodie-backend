@@ -22,7 +22,7 @@ const signIn = async(req, res) => {
 
         const token = jwt.sign({
             user_id: user_id, email
-        }, process.env.TOKEN_ID, 
+        }, 'secret', 
         {
             expiresIn: "2h",
         })
@@ -39,4 +39,30 @@ const signIn = async(req, res) => {
     
 }
 
-module.exports = { signIn }
+const logIn = async(req, res) => {
+    try {
+        const { email, password } = req.body
+
+        const user = await User.findOne({ email })
+        if (!user) {
+            res.status(404)
+                .json({ message: 'Invalid credentials' })
+        }
+
+        const passwordIsMatch = await bcrypt.compare(password, user.password)
+        if (!passwordIsMatch) {
+            res.status(404)
+                .json({ message: 'Invalid credentials' })
+        }
+        const token = jwt.sign({
+                userId: user._id }, 'secret', 
+                { expiresIn: '1h' })
+
+        res.json({ token })
+
+    } catch (err) {
+        res.status(500).json({ message: err.message})
+    }
+}
+
+module.exports = { signIn, logIn }
