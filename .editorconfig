@@ -1,0 +1,35 @@
+# EditorConfig helps developers define and maintain consistent
+# coding styles between different editors and IDEs.
+
+# Top-most EditorConfig file
+root = true
+
+# All files
+[*]
+charset = utf-8
+end_of_line = lf
+insert_final_newline = true
+indent_style = space
+indent_size = 2
+trim_trailing_whitespace = true
+
+# JavaScript files
+[*.js]
+# Set the indent size to 2 spaces
+indent_size = 2
+
+# JSON files
+[*.json]
+# Set the indent size to 2 spaces
+indent_size = 2
+
+# Markdown files
+[*.md]
+# Set the indent size to 2 spaces
+indent_size = 2
+
+# Configuration files
+# Add more file types as needed (e.g., *.config, *.yaml, etc.)
+[.editorconfig]
+# Set the indent size to 2 spaces
+indent_size = 2

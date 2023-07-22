@@ -6,4 +6,6 @@ const reviewSchema = new Schema({
     }
 })
 
-module.exports = Review = model('review', reviewSchema)
+const Review = model('review', reviewSchema)
+
+module.exports = Review
