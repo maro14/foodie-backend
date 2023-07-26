@@ -1,4 +1,6 @@
 const Order = require('../models/order');
+const User = require('../models/user');
+const Item = require('../models/item');
 
 const getOrders = async(req, res) => {
     try {
@@ -12,8 +14,18 @@ const getOrders = async(req, res) => {
 
 const createOrder = async(req, res) => {
     try {
-        const { user, item } = req.body
-        const order = await Order.create({ user, item })
+        const { userId, itemIds } = req.body
+
+        const user = await User.findById(userId)
+        if (!user) {
+          res.status(404).json({ message: 'User not found'})
+        }
+
+        const items = await Item.find({ _id: { $in: itemIds }})
+        if (items.length !== itemIds.length) {
+          res.status(400).json({ message: 'One or more items not found'})
+        }
+        const order = await Order.create({ user, items })
         res.status(201)
             .json({ data: order })
     } catch (error) {
@@ -22,7 +34,7 @@ const createOrder = async(req, res) => {
     }
 }
 
-module.exports = { 
-    getOrders, 
+module.exports = {
+    getOrders,
     createOrder
 }
