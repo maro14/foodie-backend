@@ -25,7 +25,7 @@ const createOrder = async(req, res) => {
         if (items.length !== itemIds.length) {
           res.status(400).json({ message: 'One or more items not found'})
         }
-        const order = await Order.create({ user, items })
+        const order = await Order.create({ user: userId, items: itemIds })
         res.status(201)
             .json({ data: order })
     } catch (error) {

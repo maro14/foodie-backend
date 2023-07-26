@@ -7,7 +7,8 @@ const userSchema = new Schema({
     },
     username: {
         type: String,
-        required: true
+        required: true,
+        maxlength: 8
     },
     email : {
         type: String,
@@ -16,7 +17,7 @@ const userSchema = new Schema({
     },
     password: {
         type: String,
-        required: [true, "Pasoword must contain at least 6 characters"],
+        required: [true, "Password must contain at least 6 characters"],
         minLength: 6
     },
     role: {
