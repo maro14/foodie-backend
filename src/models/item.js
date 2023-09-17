@@ -1,4 +1,5 @@
 const { Schema , model } = require('mongoose')
+const Review = require('./review').reviewSchema
 
 const itemSchema = new Schema({
     name: {
@@ -11,7 +12,8 @@ const itemSchema = new Schema({
     },
     description: {
         type: String
-    }
+    },
+    review: [Review]
 }, {timestamps: true })
 
 const Item = model('Item', itemSchema)

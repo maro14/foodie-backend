@@ -1,13 +1,11 @@
 # Foodie Backend
 
-
 ## Table of Contents
 
 - [Foodie Backend](#foodie-backend)
   - [Table of Contents](#table-of-contents)
   - [Installation](#installation)
   - [Usage](#usage)
-  - [API Endpoints](#api-endpoints)
   - [Authentication](#authentication)
   - [Technologies Used](#technologies-used)
   - [Contributing](#contributing)
@@ -55,18 +53,6 @@ The server should now be running at <http://localhost:3000>.
 
 Explain how to use your application. Provide examples of how users can interact with the API and any necessary authentication details.
 
-## API Endpoints
-
-List all the available API endpoints and their descriptions. Provide details on the expected request and response format for each endpoint.
-
-Example:
-
-- `GET /api/items`: Get a list of all items.
-- `GET /api/items/:id`: Get details of a specific item by ID.
-- `POST /api/items`: Add a new item (authentication required).
-- `PUT /api/items/:id`: Update an existing item by ID (authentication required).
-- `DELETE /api/items/:id`: Delete an item by ID (authentication required).
-
 ## Authentication
 
 Explain how the authentication works in your project. If you're using JWT, mention how users can obtain a token and include it in the request headers for authenticated routes.
@@ -97,10 +83,6 @@ Explain how others can contribute to your project, whether it's through bug repo
 
 ## License
 
-Specify the license under which your project is released. For example, you can use the MIT License:
-
 ```bash
 MIT License
 ```
-
-Feel free to include any other sections that are relevant to your project, such as project structure, testing, deployment instructions, or additional resources. The README.md file serves as a helpful guide for users and contributors to understand and use your project effectively.
