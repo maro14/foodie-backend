@@ -3,7 +3,7 @@ const User = require('../models/user');
 
 const authenticateUser = async(req, res, next) => {
     try {
-        
+
         const token = req.headers.authorization?.split(' ')[1]
         if (!token) {
             res.status(401)
@@ -22,6 +22,10 @@ const authenticateUser = async(req, res, next) => {
         next()
 
     } catch (err) {
+      if (err.username === 'TokenExpiredError') {
+        res.status(401)
+          .json({message: 'Token has expired' })
+      }
         res.status(500)
             .json({ message: 'Invalid token'})
     }
@@ -30,7 +34,7 @@ const authenticateUser = async(req, res, next) => {
 const isAdmin = async(req, res) => {
 
     const adminRole = req.user.role
-    if (adminRole ==! 'admin') {
+    if (adminRole !== 'admin') {
         res.status(401)
             .json({ message: 'Forbidden you are not admin'})
     }

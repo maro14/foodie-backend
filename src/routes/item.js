@@ -8,16 +8,16 @@ const {
 
 } = require('../controllers/item');
 
-const { 
-    authenticateUser, 
-    isAdmin 
+const {
+    authenticateUser,
+    isAdmin
 
 } = require('../authentication/auth');
 
 const router = express.Router()
 
 router.get('/', getItems)
-router.get('/:id`', getItem)
+router.get('/:id', getItem)
 
 router.post('/', authenticateUser, isAdmin, addItem)
 router.put('/:id', authenticateUser , isAdmin, updateItem)

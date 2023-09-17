@@ -1,6 +1,5 @@
 # Foodie Backend
 
-A brief description of your project goes here. Provide an overview of what the project does and its key features.
 
 ## Table of Contents
 

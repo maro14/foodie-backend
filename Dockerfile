@@ -4,12 +4,6 @@ FROM node:14-slim
 # Set the working directory inside the container
 WORKDIR /usr/src/app
 
-# Install Yarn
-RUN apt-get update && \
-    apt-get install -y curl && \
-    curl -sL https://deb.nodesource.com/setup_14.x | bash - && \
-    apt-get install -y nodejs && \
-    npm install -g yarn
 
 # Copy package.json and package-lock.json to the container
 COPY package*.json ./
