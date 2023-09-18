@@ -13,8 +13,13 @@ const itemSchema = new Schema({
     description: {
         type: String
     },
-    review: [Review]
-}, {timestamps: true })
+    review: [Review],
+
+    createdAt: {
+      type: Date,
+      default: Date.now()
+  }
+})
 
 const Item = model('Item', itemSchema)
 
