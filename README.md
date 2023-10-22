@@ -7,7 +7,6 @@
   - [Installation](#installation)
   - [Usage](#usage)
   - [Authentication](#authentication)
-  - [Technologies Used](#technologies-used)
   - [Contributing](#contributing)
   - [License](#license)
 
@@ -64,18 +63,6 @@ To access protected routes, include the JWT token in the `Authorization` header 
 ```bash
 Authorization: Bearer your-jwt-token
 ```
-
-## Technologies Used
-
-List the key technologies and frameworks used in your project.
-
-Example:
-
-- Node.js
-- Express.js
-- MongoDB
-- Mongoose
-- JSON Web Tokens (JWT)
 
 ## Contributing
 

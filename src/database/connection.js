@@ -4,7 +4,7 @@ dotenv.config()
 
 const MongodbConnect = () => {
     try {
-        connect(process.env.MONGODB, {
+        connect('mongodb://localhost:27017/foodie', {
             useNewUrlParser: true,
             useUnifiedTopology: true,
         })

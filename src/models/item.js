@@ -13,7 +13,10 @@ const itemSchema = new Schema({
     description: {
         type: String
     },
-    review: [Review],
+    review: {
+      type: [String],
+      default: []
+    },
 
     createdAt: {
       type: Date,

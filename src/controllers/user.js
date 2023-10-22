@@ -23,7 +23,7 @@ const signIn = async(req, res) => {
 
         const token = jwt.sign({
             user_id: user_id, email
-        }, 'secret', 
+        }, process.env.JWT_SECRET,
         {
             expiresIn: "2h",
         })
@@ -37,7 +37,7 @@ const signIn = async(req, res) => {
         res.status(500)
             .json({ data: err, message: 'Server error' })
     }
-    
+
 }
 
 const logIn = async(req, res) => {
@@ -56,7 +56,7 @@ const logIn = async(req, res) => {
                 .json({ message: 'Invalid credentials' })
         }
         const token = jwt.sign({
-                userId: user._id }, 'secret', 
+                userId: user._id }, 'secret',
                 { expiresIn: '1h' })
 
         res.json({ token })

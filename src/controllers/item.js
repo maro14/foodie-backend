@@ -2,7 +2,7 @@ const Item = require('../models/item')
 
 
 const getItems = async(req, res) => {
-    
+
     try {
         const items = await Item.find()
         res.status(200)
@@ -14,10 +14,10 @@ const getItems = async(req, res) => {
 }
 
 const addItem = async(req, res) => {
-    
+
     try {
-        const { name, price, description } = req.body
-        const item = await Item.create({ name, price, description })
+        const { name, price, description, review } = req.body
+        const item = await Item.create({ name, price, description, review: review || [] })
         res.status(201)
             .json({ data: item })
     } catch (err) {
@@ -27,7 +27,7 @@ const addItem = async(req, res) => {
 }
 
 const getItem = async(req, res) => {
-    
+
     try {
         const id = req.params
         const item = await Item.findById({ id })
@@ -40,7 +40,7 @@ const getItem = async(req, res) => {
 }
 
 const updateItem = async(req, res) => {
-    
+
     try {
         const { id, name } = req.body
         const item = await Item.findOneAndUpdate(id, { name }, { new: true})
@@ -53,7 +53,7 @@ const updateItem = async(req, res) => {
 }
 
 const deleteItem = async(req, res) => {
-    
+
     try {
         const { id } = req.params
         const item = await Item.findOneAndDelete(id)
