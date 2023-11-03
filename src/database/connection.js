@@ -2,9 +2,11 @@ const { connect} = require('mongoose');
 const dotenv = require('dotenv');
 dotenv.config()
 
+const MONGOURI = process.env.MONGO_URI || 'mongodb://localhost:27017/foodie'
+
 const MongodbConnect = () => {
     try {
-        connect('mongodb://localhost:27017/foodie', {
+        connect( MONGOURI , {
             useNewUrlParser: true,
             useUnifiedTopology: true,
         })

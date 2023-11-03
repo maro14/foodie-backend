@@ -43,7 +43,7 @@ const updateItem = async(req, res) => {
 
     try {
         const { id, name } = req.body
-        const item = await Item.findOneAndUpdate(id, { name }, { new: true})
+        const item = await Item.findOneAndUpdate(id, { name }, { new: true })
         res.status(200)
             .json({ data: item })
     } catch (err) {

@@ -2,42 +2,37 @@ const User = require('../models/user');
 const jwt = require('jsonwebtoken');
 const bcrypt = require('bcryptjs');
 
-const signIn = async(req, res) => {
+const signIn = async (req, res) => {
+  try {
+    const { username, email, password, role } = req.body
 
-    try {
-        const { username, email, password, role } = req.body
-
-        emailUser = await User.findOne({ email })
-        if (emailUser) {
-            res.status(404)
-                .json({ message: 'User already exists' })
-        }
-        encryptedPassword = bcrypt.hash(password, 10)
-
-        const addUser = await User.create({
-            username,
-            email,
-            password: encryptedPassword,
-            role
-        })
-
-        const token = jwt.sign({
-            user_id: user_id, email
-        }, process.env.JWT_SECRET,
-        {
-            expiresIn: "2h",
-        })
-
-        addUser.token = token
-
-        res.status(201)
-            .json({ data: token })
-
-    } catch (err) {
-        res.status(500)
-            .json({ data: err, message: 'Server error' })
+    const emailUser = await User.findOne({ email })
+    if (emailUser) {
+      return res.status(404).json({ message: 'User already exists' })
     }
 
+    if (role && !['user', 'admin'].includes(role)) {
+      return res.status(400).json({ message: 'Invalid role' })
+    }
+
+    const encryptedPassword = await bcrypt.hash(password, 10)
+
+    const newUser = await User.create({
+      username,
+      email,
+      password: encryptedPassword,
+      role: role || 'user'
+    })
+
+    const token = jwt.sign({
+      user_id: newUser._id,
+      email: newUser.email
+    }, 'secret')
+
+    res.status(201).json({ token })
+  } catch (err) {
+    res.status(500).json({ message: 'Server error' })
+  }
 }
 
 const logIn = async(req, res) => {
