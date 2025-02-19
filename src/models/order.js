@@ -11,6 +11,10 @@ const orderSchema = new Schema({
         ref: 'item',
         required: true
     }],
+    quantity: {
+        type: Number,
+        default: 1
+    },
     status: {
         type: String,
         enum: ['pending', 'completed', 'cancelled'],

@@ -9,11 +9,13 @@ const userSchema = new Schema({
     email : {
         type: String,
         required: true,
-        unique: true
+        unique: true,
+        match: [/^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/,]
     },
     password: {
         type: String,
         required: [true, "Password must contain at least 6 characters"],
+        unqiue: true,
         minLength: 6
     },
     role: {

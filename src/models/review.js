@@ -18,7 +18,8 @@ const reviewSchema = new Schema({
       max: 5
     },
     comment: {
-      type: String
+      type: String,
+      maxlength: 255
     }
 })
 

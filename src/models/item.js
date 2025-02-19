@@ -12,11 +12,15 @@ const itemSchema = new Schema({
     description: {
         type: String
     },
-    review: {
-      type: [String],
-      default: []
+    category: {
+        type: String,
+        enum: ['appetizer', 'main', 'dessert', 'beverage'],
+        required: true
     },
-
+    reviews: {
+      type: [Schema.Types.ObjectId],
+      ref: 'review'
+    },
     createdAt: {
       type: Date,
       default: Date.now()
