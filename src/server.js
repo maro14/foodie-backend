@@ -26,7 +26,7 @@ app.use('/items',itemsRouter)
 app.use('/orders', orderRouter)
 app.use('/users', userRouter)
 
-const PORT = process.env.PORT || 5000
+const PORT = process.env.PORT
 
 //database connection
 MongodbConnect()
