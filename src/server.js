@@ -8,7 +8,7 @@ dotenv.config()
 const itemsRouter = require('./routes/item')
 const orderRouter = require('./routes/order')
 const userRouter = require('./routes/user');
-const { MongodbConnect } = require('./database/connection')
+const { MongodbConnect } = require('./config/database')
 
 const app = express()
 

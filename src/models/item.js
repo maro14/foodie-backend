@@ -15,7 +15,6 @@ const itemSchema = new Schema({
     category: {
         type: String,
         enum: ['appetizer', 'main', 'dessert', 'beverage'],
-        required: true
     },
     reviews: {
       type: [Schema.Types.ObjectId],
