@@ -1,5 +1,5 @@
+//src/controllers/item.js
 const Item = require('../models/item')
-
 
 const getItems = async(req, res) => {
 
@@ -22,7 +22,7 @@ const addItem = async(req, res) => {
             .json({ data: item })
     } catch (err) {
         res.status(500)
-            .json({ message: err.massage })
+            .json({ message: err.message })
     }
 }
 
@@ -35,7 +35,7 @@ const getItem = async(req, res) => {
             .json({ data: item })
     } catch (err) {
         res.status(500)
-            .json({ message: err.massage })
+            .json({ message: err.message })
     }
 }
 
@@ -61,7 +61,7 @@ const deleteItem = async(req, res) => {
             .json({ data: item })
     } catch (err) {
         res.status(404)
-            .json({ message: err.massage })
+            .json({ message: err.message })
     }
 }
 

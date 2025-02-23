@@ -1,3 +1,4 @@
+//src/routes/item.js
 const express = require('express');
 const { authenticateUser, isAdmin } = require('../middlewares/auth');
 const { getItems, getItem, addItem, updateItem, deleteItem } = require('../controllers/item');

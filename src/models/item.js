@@ -1,3 +1,4 @@
+//src/models/item.js
 const { Schema , model } = require('mongoose')
 
 const itemSchema = new Schema({

@@ -1,3 +1,4 @@
+//src/controllers/order.js
 const Order = require('../models/order');
 const User = require('../models/user');
 const Item = require('../models/item');
@@ -18,12 +19,12 @@ const createOrder = async(req, res) => {
 
         const user = await User.findById(userId)
         if (!user) {
-          res.status(404).json({ message: 'User not found'})
+            res.status(404).json({ message: 'User not found'})
         }
 
         const items = await Item.find({ _id: { $in: itemIds }})
         if (items.length !== itemIds.length) {
-          res.status(400).json({ message: 'One or more items not found'})
+            res.status(400).json({ message: 'One or more items not found'})
         }
         const order = await Order.create({ user: userId, items: itemIds })
         res.status(201)
