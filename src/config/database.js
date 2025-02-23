@@ -3,9 +3,9 @@ const dotenv = require('dotenv');
 dotenv.config()
 
 const MONGO_URI = process.env.MONGO_URI
-const MongodbConnect = () => {
+const MongodbConnect = async() => {
     try {
-        connect( MONGO_URI)
+      await connect(MONGO_URI)
         console.log('Database from Mongodb connected');
     } catch (err) {
         console.error('Database connection error:', err.message);

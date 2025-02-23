@@ -13,14 +13,14 @@ const CreateReview = async(req, res) => {
       res.status(404).json({ message: 'Item not found'})
     }
 
-    const reivew = await Review.create({
+    const review = await Review.create({
       user: req.user._id,
       item: itemid,
       rating,
       comment
     })
 
-    res.status(201).json({ data: reivew })
+    res.status(201).json({ data: review })
   } catch (err) {
     req.status(500).json({ message: err.message })
   }

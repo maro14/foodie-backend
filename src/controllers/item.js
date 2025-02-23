@@ -30,7 +30,7 @@ const getItem = async(req, res) => {
 
     try {
         const id = req.params
-        const item = await Item.findById({ id })
+        const item = await Item.findById(id)
         res.status(200)
             .json({ data: item })
     } catch (err) {
