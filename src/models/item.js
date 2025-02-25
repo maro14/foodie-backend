@@ -1,34 +1,28 @@
 //src/models/item.js
-const { Schema , model } = require('mongoose')
+const { Schema, model } = require('mongoose');
 
 const itemSchema = new Schema({
     name: {
         type: String,
-        required: true
+        required: true,
     },
     price: {
         type: Number,
-        required: true
+        required: true,
     },
     description: {
-        type: String
+        type: String,
     },
     category: {
         type: String,
         enum: ['appetizer', 'main', 'dessert', 'beverage'],
     },
-    reviews:[
-        {
-            type: Schema.Types.ObjectId,
-            ref: 'review'
-        }
-    ],
-    createdAt: {
-      type: Date,
-      default: Date.now()
-  }
-})
+    reviews: [{
+        type: Schema.Types.ObjectId,
+        ref: 'review',
+    }],
+}, { timestamps: true });
 
-const Item = model('Item', itemSchema)
+const Item = model('Item', itemSchema);
 
-module.exports = Item
+module.exports = Item;

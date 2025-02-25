@@ -29,7 +29,7 @@ const addItem = async(req, res) => {
 const getItem = async(req, res) => {
 
     try {
-        const id = req.params
+        const { id } = req.params
         const item = await Item.findById(id)
         res.status(200)
             .json({ data: item })
@@ -42,7 +42,8 @@ const getItem = async(req, res) => {
 const updateItem = async(req, res) => {
 
     try {
-        const { id, name } = req.body
+        const { id } = req.params
+        const { name } = req.body
         const item = await Item.findOneAndUpdate(id, { name }, { new: true })
         res.status(200)
             .json({ data: item })
