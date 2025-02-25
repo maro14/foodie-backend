@@ -44,7 +44,7 @@ const updateItem = async(req, res) => {
     try {
         const { id } = req.params
         const { name } = req.body
-        const item = await Item.findOneAndUpdate(id, { name }, { new: true })
+        const item = await Item.findByIdAndUpdate(id, { name }, { new: true })
         res.status(200)
             .json({ data: item })
     } catch (err) {
@@ -57,7 +57,7 @@ const deleteItem = async(req, res) => {
 
     try {
         const { id } = req.params
-        const item = await Item.findOneAndDelete(id)
+        const item = await Item.findByIdAndDelete(id)
         res.status(200)
             .json({ data: item })
     } catch (err) {
