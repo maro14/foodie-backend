@@ -1,3 +1,18 @@
 {
-    "terminal.integrated.defaultProfile.linux": "zsh"
+    "terminal.integrated.defaultProfile.linux": "zsh",
+    "terminal.integrated.defaultProfile.windows": "Command Prompt",
+    "npm.packageManager": "yarn",
+    "search.exclude": {
+        "**/node_modules": true,
+        "**/yarn.lock": true,
+        "**/.yarn": true
+    },
+    "files.exclude": {
+        "**/.git": true,
+        "**/node_modules": true,
+        "**/.yarn/cache": true
+    },
+    "editor.codeActionsOnSave": {
+        "source.fixAll.eslint": "explicit"
+    }
 }
