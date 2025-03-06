@@ -48,8 +48,8 @@ const isAdmin = async (req, res, next) => {
         }
 
         next();
-    } catch (error) {
-        res.status(500).json({ message: 'Server error' });
+    } catch (err) {
+        res.status(500).json({ message: 'Server error', err});
     }
 };
 

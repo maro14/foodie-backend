@@ -1,5 +1,5 @@
 //src/models/user.js
-const { Schema , model } = require('mongoose')
+const { Schema , model } = require('mongoose');
 
 const userSchema = new Schema({
     username: {
@@ -14,7 +14,7 @@ const userSchema = new Schema({
     },
     password: {
         type: String,
-        required: [true, "Password must contain at least 6 characters"],
+        required: [true, 'Password must contain at least 6 characters'],
         minLength: 6
     },
     role: {
@@ -22,8 +22,8 @@ const userSchema = new Schema({
         enum: ['user', 'admin'],
         default: 'user'
     }
-})
+});
 
-const User = model('user', userSchema)
+const User = model('user', userSchema);
 
-module.exports = User
+module.exports = User;

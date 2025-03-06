@@ -1,5 +1,5 @@
 //src/models/review.js
-const { Schema, model } = require('mongoose')
+const { Schema, model } = require('mongoose');
 
 const reviewSchema = new Schema({
     user: {
@@ -8,22 +8,22 @@ const reviewSchema = new Schema({
         required: true
     },
     item: {
-      type: Schema.Types.ObjectId,
-      ref: 'item',
-      required: true
+        type: Schema.Types.ObjectId,
+        ref: 'item',
+        required: true
     },
     rating: {
-      type: Number,
-      required: true,
-      min: 1,
-      max: 5
+        type: Number,
+        required: true,
+        min: 1,
+        max: 5
     },
     comment: {
-      type: String,
-      maxlength: 255
+        type: String,
+        maxlength: 255
     }
-})
+});
 
-const Review = model('review', reviewSchema)
+const Review = model('review', reviewSchema);
 
-module.exports = Review
+module.exports = Review;
