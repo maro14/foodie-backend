@@ -1,5 +1,7 @@
 # Foodie Backend
 
+This backend is built using Node.js, Express, and MongoDB. It provides a RESTful API for managing food-related data.
+
 ## Table of Contents
 
 - [Foodie Backend](#foodie-backend)
@@ -45,7 +47,4 @@ yarn start
 The server should now be running at <http://localhost:5000>.
 
 ## License
-
-```bash
-MIT License
-```
+This project is licensed under the [MIT License](LICENSE).
