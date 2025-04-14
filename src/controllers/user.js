@@ -2,19 +2,33 @@
 const User = require('../models/user');
 const jwt = require('jsonwebtoken');
 const bcrypt = require('bcryptjs');
+const { AppError } = require('../middlewares/error');
 
-const register = async (req, res) => {
+/**
+ * Registers a new user
+ * @async
+ * @param {import('express').Request} req - Express request object
+ * @param {import('express').Response} res - Express response object
+ * @param {import('express').NextFunction} next - Express next function
+ */
+const register = async (req, res, next) => {
     try {
         const { username, email, password, role } = req.body;
 
         // Validate input
         if (!username || !email || !password) {
-            return res.status(400).json({ message: 'All fields are required' });
+            return next(new AppError('All fields are required', 400));
         }
 
         // Check password strength
         if (password.length < 6) {
-            return res.status(400).json({ message: 'Password must be at least 6 characters' });
+            return next(new AppError('Password must be at least 6 characters', 400));
+        }
+
+        // Validate email format
+        const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+        if (!emailRegex.test(email)) {
+            return next(new AppError('Please provide a valid email address', 400));
         }
 
         // Check if user exists
@@ -23,14 +37,12 @@ const register = async (req, res) => {
         });
 
         if (existingUser) {
-            return res.status(400).json({
-                message: 'User with this email or username already exists'
-            });
+            return next(new AppError('User with this email or username already exists', 400));
         }
 
         // Validate role
         if (role && !['user', 'admin'].includes(role)) {
-            return res.status(400).json({ message: 'Invalid role' });
+            return next(new AppError('Invalid role', 400));
         }
 
         // Hash password
@@ -45,20 +57,13 @@ const register = async (req, res) => {
         });
 
         // Generate token
-        const token = jwt.sign(
-            {
-                user_id: newUser._id,
-                email: newUser.email,
-                role: newUser.role
-            },
-            process.env.JWT_SECRET,
-            { expiresIn: '24h' }
-        );
+        const token = generateToken(newUser);
 
         res.status(201).json({
+            status: 'success',
             message: 'Registration successful',
             token,
-            user: {
+            data: {
                 id: newUser._id,
                 username: newUser.username,
                 email: newUser.email,
@@ -66,47 +71,49 @@ const register = async (req, res) => {
             }
         });
     } catch (err) {
-        console.error('Registration error:', err);
-        res.status(500).json({ message: 'Server error during registration' });
+        next(new AppError('Server error during registration', 500));
     }
 };
 
-const logIn = async (req, res) => {
+/**
+ * Logs in an existing user
+ * @async
+ * @param {import('express').Request} req - Express request object
+ * @param {import('express').Response} res - Express response object
+ * @param {import('express').NextFunction} next - Express next function
+ */
+const logIn = async (req, res, next) => {
     try {
         const { email, password } = req.body;
 
         // Validate input
         if (!email || !password) {
-            return res.status(400).json({ message: 'All fields are required' });
+            return next(new AppError('All fields are required', 400));
         }
 
         // Find user
-        const user = await User.findOne({ email: email.toLowerCase() });
+        const user = await User.findOne({ email: email.toLowerCase() }).select('+password');
         if (!user) {
-            return res.status(401).json({ message: 'Invalid credentials' });
+            return next(new AppError('Invalid credentials', 401));
         }
 
         // Verify password
         const passwordIsMatch = await bcrypt.compare(password, user.password);
         if (!passwordIsMatch) {
-            return res.status(401).json({ message: 'Invalid credentials' });
+            return next(new AppError('Invalid credentials', 401));
         }
 
         // Generate token
-        const token = jwt.sign(
-            {
-                user_id: user._id,
-                email: user.email,
-                role: user.role
-            },
-            process.env.JWT_SECRET,
-            { expiresIn: '24h' }
-        );
+        const token = generateToken(user);
+
+        // Remove password from output
+        user.password = undefined;
 
         res.status(200).json({
+            status: 'success',
             message: 'Login successful',
             token,
-            user: {
+            data: {
                 id: user._id,
                 username: user.username,
                 email: user.email,
@@ -114,9 +121,25 @@ const logIn = async (req, res) => {
             }
         });
     } catch (err) {
-        console.error('Login error:', err);
-        res.status(500).json({ message: 'Server error during login' });
+        next(new AppError('Server error during login', 500));
     }
+};
+
+/**
+ * Generates a JWT token for a user
+ * @param {Object} user - User object
+ * @returns {string} JWT token
+ */
+const generateToken = (user) => {
+    return jwt.sign(
+        {
+            user_id: user._id,
+            email: user.email,
+            role: user.role
+        },
+        process.env.JWT_SECRET,
+        { expiresIn: process.env.JWT_EXPIRES_IN || '24h' }
+    );
 };
 
 module.exports = { register, logIn };
