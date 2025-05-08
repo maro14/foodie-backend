@@ -44,7 +44,8 @@ export default [
   {
     files: ['**/*.test.js'],
     rules: {
-      'no-console': 'off'
+      'no-console': 'off',
+      'no-unused-vars': 'off', // Disabled for test files
     }
   }
 ];
