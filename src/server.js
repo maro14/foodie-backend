@@ -5,6 +5,28 @@ const helmet = require('helmet');
 const dotenv = require('dotenv');
 dotenv.config();
 
+/**
+ * @module server
+ * @description Main server file for the application.
+ * @requires express
+ * @requires morgan
+ * @requires cors
+ * @requires helmet
+ * @requires dotenv
+ * @requires routes/item
+ * @requires routes/order
+ * @requires routes/user
+ * @requires config/database
+ * @requires middlewares/error
+ * @requires middlewares/auth
+ * @requires middlewares/validation
+ * @requires middlewares/response
+ * @requires middlewares/logger
+ * @requires middlewares/role
+ * @requires middlewares/async
+ * @requires middlewares/response
+ * @requires middlewares/validation
+ */
 const itemsRouter = require('./routes/item');
 const orderRouter = require('./routes/order');
 const userRouter = require('./routes/user');

@@ -2,7 +2,13 @@
 const jwt = require('jsonwebtoken');
 const User = require('../models/user');
 
-// Middleware to authenticate user
+/**
+ * Middleware to authenticate user and check if user is admin
+ * @param {Object} req - The request object
+ * @param {Object} res - The response object
+ * @param {Function} next - The next middleware function
+ */
+
 const authenticateUser = async (req, res, next) => {
     try {
         // Get token from header
@@ -36,7 +42,12 @@ const authenticateUser = async (req, res, next) => {
     }
 };
 
-// Middleware to check if user is admin
+/**
+ * Middleware to check if user is admin
+ * @param {Object} req - The request object
+ * @param {Object} res - The response object
+ * @param {Function} next - The next middleware function
+ */
 const isAdmin = async (req, res, next) => {
     try {
         if (!req.user) {

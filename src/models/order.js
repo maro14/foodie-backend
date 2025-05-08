@@ -25,8 +25,8 @@ const orderSchema = new Schema({
         type: Date,
         default: Date.now()
     }
-})
+});
 
-const Order = model('order', orderSchema)
+const Order = model('order', orderSchema);
 
-module.exports = Order
+module.exports = Order;

@@ -1,3 +1,15 @@
+
+/**
+ * Error handling middleware for Express applications.
+ * It captures errors thrown in the application and sends appropriate responses.
+ * @module errorHandler
+ * @requires express
+ *
+ * @version 1.0.0
+ * @author Teheskhiel Fritz
+ * @date 2023-10-01
+ *
+ */
 class AppError extends Error {
     constructor(message, statusCode) {
         super(message);
