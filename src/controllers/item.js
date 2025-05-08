@@ -30,7 +30,7 @@ const getItems = async(req, res) => {
  * @param {number} req.body.price - Price of the item
  * @param {string} req.body.description - Description of the item
  * @param {Array} [req.body.review] - Optional array of reviews
- * @returns {Promise<void>} - JSON response with created item
+ * @returns {Promise<void>} - JSON response  with created item
  */
 const addItem = async(req, res) => {
 
@@ -108,7 +108,7 @@ const deleteItem = async(req, res) => {
         const item = await Item.findById(id);
         if (!item) {
             return res.status(404)
-                      .json({ message: 'Item not found' });
+                .json({ message: 'Item not found' });
         }
         await Item.findByIdAndDelete(id);
         res.status(200)
