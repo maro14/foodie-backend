@@ -15,9 +15,20 @@ const register = async (req, res, next) => {
     try {
         const { username, email, password, role } = req.body;
 
-        // Validate input
-        if (!username || !email || !password) {
-            return next(new AppError('All fields are required', 400));
+        // Validate input with more specific messages
+        if (!username) {
+            return next(new AppError('Username is required', 400));
+        }
+        if (!email) {
+            return next(new AppError('Email is required', 400));
+        }
+        if (!password) {
+            return next(new AppError('Password is required', 400));
+        }
+
+        // Username validation
+        if (username.length > 8) {
+            return next(new AppError('Username cannot exceed 8 characters', 400));
         }
 
         // Check password strength
@@ -39,7 +50,7 @@ const register = async (req, res, next) => {
         if (existingUser) {
             return next(new AppError('User with this email or username already exists', 400));
         }
-
+ 
         // Validate role
         if (role && !['user', 'admin'].includes(role)) {
             return next(new AppError('Invalid role', 400));
