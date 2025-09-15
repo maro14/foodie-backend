@@ -101,17 +101,17 @@ The server will be running at `http://localhost:5000`
 
 Run the test suite:
 ```bash
-npm test
+yarn test
 ```
 
 Run tests in watch mode:
 ```bash
-npm run test:watch
+yarn test:watch
 ```
 
 Generate coverage report:
 ```bash
-npm run test:coverage
+yarn test:coverage
 ```
 
 ## Docker
